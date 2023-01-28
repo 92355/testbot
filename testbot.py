@@ -1,13 +1,16 @@
 import discord
-from discord.ext import commands
+import asyncio
 import os
 
-bot = commands.Bot(command_prefix = '/')
 
+client = commands.Bot(command_prefix = '-')
 
-@bot.command()
-async def 안녕(ctx):
-    await ctx.send("안녕!")
+@client.event
+async def on_message(message):
+    if message.content == ("빙빙베베 온!"):
+        helloembed = discord.Embed(title="빙빙베베 켜짐!",
+                                     description=" ", 
+                                        color=0xFaaaaF)
+        await message.channel.send(embed=helloembed)
 
-
-bot.run(os.environ['token'])
+client.run(os.environ['token'])
